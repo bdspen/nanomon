@@ -1,12 +1,16 @@
 # _NanoMon_
 
-#### _A nano sized system resource monitor , 4/2016_
+#### _A nano-sized system resource monitor , 4/2016_
 
 #### By _**Benjamin Spenard**_
 
 ## Description
 
 _A small tool that allows you to keep track of the load on your system's CPU and Memory_
+
+## Installation
+
+At this early stage of development, If you would like to run the program, clone this repo, run `npm install`, navigate to the project directory and run: `electron .`
 
 ## Contact Details
 
