@@ -1,0 +1,18 @@
+.container{
+    margin: 0;
+}
+#cpu-container{
+    background-color: #777;
+    max-height: 60px;
+}
+#memory-percent-container{
+    background-color: #777;
+    max-height: 60px;
+}
+#freemem-container{
+    background-color: #777;
+    max-height: 60px;
+}
+.bar{
+    height: 30px;
+}
