@@ -7,20 +7,12 @@ var Tray = require('tray');//operating system's notification area
 var appIcon = null;//empty tray icon
 
 app.on('ready', function ready() {
-    //build tray and menu
-    appIcon = new Tray('neutron.png');
     var contextMenu = Menu.buildFromTemplate([{
-        label: 'CPU',
-        type: 'radio'
+        label: 'Monitor',
+        click: function(){ mainWindow.show();}
     }, {
-        label: 'MEMORY',
-        type: 'radio'
-    }, {
-        label: 'IO',
-        type: 'radio',
-        checked: true
+        label: 'Processes',
     }]);
-    appIcon.setContextMenu(contextMenu);
 
     //build the window
     mainWindow = new BrowserWindow({
@@ -28,12 +20,28 @@ app.on('ready', function ready() {
         height: 120,
         x: 9999,
         y: 0,
+        frame: false,
+        show: false,
         icon: __dirname + '/neutron.png'
     });
     mainWindow.loadURL('file://' + __dirname + '/index.html');
 
+    //build icon and tray
+    appIcon = new Tray('neutron.png');
+    appIcon.setContextMenu(contextMenu);
+    console.log(util.inspect(contextMenu.items[0], {showHidden: false, depth: null}));
+    appIcon.on('click', function (e) {
+        console.log("click");
+        contextMenu.items[0].enabled = true;
+        if(mainWindow.isVisible()){
+            mainWindow.hide();
+        }else{
+            mainWindow.show();
+        }
+    });
+
     //open devtools
-    mainWindow.webContents.openDevTools();
+    // mainWindow.webContents.openDevTools();
 
     //on window close, shut the app
     mainWindow.on('closed', function() {

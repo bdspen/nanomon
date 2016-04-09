@@ -22,10 +22,10 @@ var memoryPercentMon = function(){
     style(memoryPercentEm, memoryPercent, "blue");
 }
 
-var freeMemMon = function(){
-    var freeMem = (os.freemem() / 100).toFixed(2);
-    freeMemEm.innerHTML = (freeMem + " GB");
-}
+// var freeMemMon = function(){
+//     var freeMem = (os.freemem() / 100).toFixed(2);
+//     freeMemEm.innerHTML = (freeMem + " GB");
+// }
 
 var style = function(em, value, color){
     em.style["width"] = value + '%';
