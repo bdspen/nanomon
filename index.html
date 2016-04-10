@@ -3,26 +3,24 @@
         <meta charset="utf-8">
         <link rel="stylesheet" href="bijou.min.css" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="styles.css" media="screen" title="no title" charset="utf-8">
-        <script src="app.js"></script>
     </head>
     <body>
         <div class="container">
             <div class="row">
                 <div id="cpu-container">
-                    <div id="cpu" class="bar">CPU</div>
+                    <div class="bar">
+                        <div id="cpu"></div>
+                    </div>
                 </div>
             </div>
             <div class="row">
                 <div id="memory-percent-container">
-                    <div id="memory-percent" class="bar"></div>
+                    <div class="bar">
+                        <div id="memory-percent"></div>
+                    </div>
                 </div>
             </div>
-            <!-- <div class="row">
-                <div id="freemem-container">
-                    <div id="freemem" class="bar">FREE</div>
-                </div>
-            </div> -->
-            <button id="show-processes" class="button small">Show Processes</button>
         </div>
     </body>
+    <script src="app.js"></script>
 </html>

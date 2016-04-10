@@ -20,12 +20,14 @@ app.on('ready', function ready() {
 
     //build the window
     mainWindow = new BrowserWindow({
-        width: 300,
-        height: 100,
+        width: 304,
+        height: 68,
         x: 9999,
         y: 0,
+        backgroundColor: '#333333',
+        transparent: true,
         frame: false,
-        show: false,
+        show: true,
         icon: __dirname + '/neutron.png'
     });
     mainWindow.loadURL('file://' + __dirname + '/index.html');

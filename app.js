@@ -12,31 +12,33 @@ var freeMemEm = document.getElementById('freemem');
 var cpuMon = function() {
     os.cpuUsage(function(v) { //will return cpu usage in % over 1s
         var cpuPercent = (v * 100).toFixed(2);
-        cpuEm.innerHTML = cpuPercent;
-        style(cpuEm, cpuPercent, "green");
+        // console.log(cpuPercent);
+        cpuEm.innerHTML = "CPU USAGE: " + cpuPercent + "%";
+        style(cpuEm, cpuPercent, "#DD4814");
     })
 }
 
 var memoryPercentMon = function(){
-    var memoryPercent = os.freememPercentage() * 100
-    memoryPercentEm.innerHTML = memoryPercent + " %";
-    style(memoryPercentEm, memoryPercent, "blue");
+    var memoryPercent = (os.freememPercentage() * 100).toFixed(2);
+    var freeMem = (os.freemem() / 1024).toFixed(2);
+    // console.log(memoryPercent);
+    memoryPercentEm.innerHTML = "MEMORY USAGE: " + memoryPercent + " %" + " / FREE: " + freeMem + " GB";
+    style(memoryPercentEm, memoryPercent, "#77216F");
 }
-
-// var freeMemMon = function(){
-//     var freeMem = (os.freemem() / 100).toFixed(2);
-//     freeMemEm.innerHTML = (freeMem + " GB");
-// }
 
 var style = function(em, value, color){
     em.style["width"] = value + '%';
     em.style["background-color"] =  color;
+    em.style["border-radius"] = "6px";
 }
+var bytesToSize = function (bytes) {
+    var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+    if (bytes == 0) return 'n/a';
+    var i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+    if (i == 0) return bytes + ' ' + sizes[i];
+    return (bytes / Math.pow(1024, i)).toFixed(1) + ' ' + sizes[i];
+};
 
-var click = function(){
-
-}
 //updates the monitored values per unit of time.
 setInterval(cpuMon, 1000);
-setInterval(memoryPercentMon, 1000);
-setInterval(freeMemMon, 1000);
+setInterval(memoryPercentMon, 2000);
