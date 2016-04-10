@@ -19,7 +19,7 @@ var cpuMon = function() {
 }
 
 var memoryPercentMon = function(){
-    var memoryPercent = (os.freememPercentage() * 100).toFixed(2);
+    var memoryPercent = Math.abs((os.freememPercentage() * 100).toFixed(2)- 100);
     var freeMem = (os.freemem() / 1024).toFixed(2);
     // console.log(memoryPercent);
     memoryPercentEm.innerHTML = "MEMORY USAGE: " + memoryPercent + " %" + " / FREE: " + freeMem + " GB";
