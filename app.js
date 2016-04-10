@@ -1,4 +1,5 @@
 'use-strict';
+
 //dependencies--------------------
 var os = require('os-utils');
 
@@ -30,6 +31,10 @@ var memoryPercentMon = function(){
 var style = function(em, value, color){
     em.style["width"] = value + '%';
     em.style["background-color"] =  color;
+}
+
+var click = function(){
+
 }
 //updates the monitored values per unit of time.
 setInterval(cpuMon, 1000);
