@@ -1,45 +1,24 @@
 body{
-    border-radius: 6px;
+    border-radius: 5px;
+    margin: 0;
 }
 .row{
     height: 32px;
     padding-bottom: 1px;
 }
-.container{
-    margin: 1px;
-}
 #cpu-container{
     background-color: #AEA79F;
     height: 32px;
-    border-radius: 6px;
+    border-radius: 5px;
     box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
-}
-#cpu{
     white-space: nowrap;
     text-align: center;
-    font-weight: bold;
+    font-family: "helvetica", sans-serif;;
+    font-size: .85em;
+    transition: width .3s;
+    color: #dddddd;
 }
-#memory-percent-container{
-    background-color: #AEA79F;
-    height: 32px;
-    border-radius: 6px;
-}
-#memory-percent{
-    white-space: nowrap;
-    text-align: center;
-    font-weight: bold;
-}
-#freemem-container{
-    background-color: #AEA79F;
-    height: 32px;
-    border-radius: 6px;
-}
-#freemem{
-    white-space: nowrap;
-    background-color: #AEA79F;
-    height: 32px;
-    font-weight: bold;
-}
-.bar{
-    height: 30px;
+#cpu-container:hover{
+  transition: opacity .5s;
+  opacity: .6;
 }

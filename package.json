@@ -9,7 +9,7 @@
   "author": "Ben Spenard",
   "license": "ISC",
   "dependencies": {
-    "os-utils": "0.0.14",
-    "vue": "^1.0.21"
+    "menubar": "^4.1.0",
+    "os-usage": "git+https://github.com/ningt/os-usage.git"
   }
 }
