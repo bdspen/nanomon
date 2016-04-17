@@ -2,23 +2,18 @@ body{
     border-radius: 5px;
     margin: 0;
 }
-.row{
-    height: 32px;
-    padding-bottom: 1px;
-}
-#cpu-container{
+.container{
     background-color: #AEA79F;
-    height: 32px;
-    border-radius: 5px;
+    height: 20px;
     box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
     white-space: nowrap;
     text-align: center;
     font-family: "helvetica", sans-serif;;
-    font-size: .85em;
-    transition: width .3s;
+    font-size: .8em;
+    transition: width .8s;
     color: #dddddd;
 }
-#cpu-container:hover{
+.container:hover{
   transition: opacity .5s;
   opacity: .6;
 }
