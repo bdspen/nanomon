@@ -39,3 +39,7 @@ body {
     transition: opacity .5s;
     opacity: .3;
 }
+.kill{
+  text-align: right;
+  color: orange;
+}

@@ -4,6 +4,8 @@
 var usage = require('os-usage');
 var cpuMonitor = new usage.CpuMonitor();
 var ipc = require('electron').ipcRenderer;
+var child_process = require('child_process');
+var exec = child_process.exec;
 
 //elements-----------------------
 var ems = {};
@@ -26,7 +28,7 @@ cpuMonitor.on('cpuUsage', function(data){
 
 var memMonitor = new usage.MemMonitor({limit: 10});
 memMonitor.on('topMemProcs', function(data) {
-    // console.log(data);
+    console.log(data);
     if(ems.processes.hasChildNodes() === false){
       initList(data);
     }if(ems.processes.hasChildNodes() === true){
@@ -39,10 +41,18 @@ memMonitor.on('topMemProcs', function(data) {
 
 var initList = function(data){
   for (var i = 0; i < data.length; i++) {
+
+    //create list element
     var li = document.createElement("li");
-    li.setAttribute("id", "process" + i);
-    li.setAttribute("class", "process")
+    li.setAttribute("id", data[i].pid);
+    li.setAttribute("class", "process");
     ems.processes.appendChild(li);
+
+    // var a = document.createElement("a");
+    // a.setAttribute("class", "kill");
+    // a.setAttribute("onclick", "kill(this)");
+    // a.innerHTML = "kill";
+    // li.appendChild(a);
   }
 }
 
@@ -57,4 +67,15 @@ var expand = function(){
   }else{
     ipc.sendSync('synchronous-message', 'contract');
   }
+}
+
+var kill = function(pid){
+  exec('kill',[pid], function(err,stout,stderr) {
+    console.log(stout);
+    if (err) {
+      console.log('Child process exited with error code', err.code);
+      return
+    }
+    console.log(stdout);
+  });
 }
