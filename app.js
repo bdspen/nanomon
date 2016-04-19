@@ -3,11 +3,13 @@
 //dependencies--------------------
 var usage = require('os-usage');
 var cpuMonitor = new usage.CpuMonitor();
+var ipc = require('electron').ipcRenderer;
 
 //elements-----------------------
 var ems = {};
 ems.user = document.getElementById('user-container');
 ems.sys = document.getElementById('sys-container');
+ems.processes = document.getElementById("processes");
 
 
 //functions-----------------------
@@ -22,24 +24,37 @@ cpuMonitor.on('cpuUsage', function(data){
 });
 
 
-var memMonitor = new usage.MemMonitor();
+var memMonitor = new usage.MemMonitor({limit: 10});
 memMonitor.on('topMemProcs', function(data) {
-    console.log(data);
-    for(var i = 0; i < data.length; i++){
-      // createProcessList(data[i]);
+    // console.log(data);
+    if(ems.processes.hasChildNodes() === false){
+      initList(data);
+    }if(ems.processes.hasChildNodes() === true){
+      for(var i = 0; i < data.length; i++){
+        ems.processes.childNodes[i].innerHTML = data[i].command + ": memory usage: " + data[i].mem;
+      }
     }
-
-    // [ { pid: '0', mem: '1521M', command: 'kernel_task' } ]
+    // data looks like: [ { pid: '0', mem: '1521M', command: 'kernel_task' } ]
 });
 
-var createProcessList = function(data){
-  var processes = document.getElementById("processes");
-  var li = document.createElement("li");
-  processes.appendChild(li);
-  li.innerHTML = data.command + ": memory usage: " + data.mem;
+var initList = function(data){
+  for (var i = 0; i < data.length; i++) {
+    var li = document.createElement("li");
+    li.setAttribute("id", "process" + i);
+    li.setAttribute("class", "process")
+    ems.processes.appendChild(li);
+  }
 }
 
 var style = function(em, value, color){
     ems[em].style["width"] = value + '%';
     ems[em].style["background-color"] =  color;
 };
+
+var expand = function(){
+  if(window.innerHeight <= 68){
+    ipc.sendSync('synchronous-message', 'expand');
+  }else{
+    ipc.sendSync('synchronous-message', 'contract');
+  }
+}
