@@ -24,18 +24,20 @@ body {
     padding: 0px;
     margin-top: 6px;
     margin-bottom: 0px;
+    height: 220px;
+    overflow: scroll;
 }
 .process {
     list-style: none;
+    border-top: solid 1px #888;
     color: #dddddd;
-    border-color: #dddddd;
     padding: 2px;
-    border: 1px solid;
     margin: 2px;
     font-family: "helvetica", sans-serif;
     font-size: .8em;
 }
 .process:hover{
     transition: opacity .5s;
-    opacity: .3;
+    opacity: .8;
+    color: #DD4814;
 }
