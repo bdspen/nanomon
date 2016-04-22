@@ -41,13 +41,13 @@ memMonitor.on('topMemProcs', function(data) {
 var initList = function(data){
   //for every process create a li with specific id, class "process" and click event to kill
   for (var i = 0; i < data.length; i++) {
-    var li = document.createElement("li");
-    li.setAttribute("id", data[i].pid);
-    li.setAttribute("class", "process");
-    li.onclick = function(){
+    var process = document.createElement("div");
+    process.setAttribute("id", data[i].pid);
+    process.setAttribute("class", "process");
+    process.onclick = function(){
       killProcess(this.id)
     }
-    ems.processes.appendChild(li);
+    ems.processes.appendChild(process);
   }
 }
 

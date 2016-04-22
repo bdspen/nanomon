@@ -25,5 +25,5 @@ mb.on('after-create-window', function ready() {
     }
   });
 
-  mb.window.openDevTools()
+  // mb.window.openDevTools()
 });
